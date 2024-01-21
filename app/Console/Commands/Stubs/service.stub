@@ -1,0 +1,11 @@
+<?php
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+class {{ class }}
+{
+
+}
