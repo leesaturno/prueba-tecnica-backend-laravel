@@ -2,26 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NodesIndexRequest;
 use App\Models\Node;
 use App\Http\Requests\StoreNodeRequest;
 use App\Http\Requests\UpdateNodeRequest;
+use App\Services\NodeService;
 
 class NodeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    protected $nodeService;
+    public function __construct(NodeService $nodeService)
     {
-        //
+        $this->nodeService = $nodeService;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index(NodesIndexRequest $request)
     {
-        //
+        return $this->nodeService->index($request->safe()->all());
     }
 
     /**
@@ -29,7 +28,7 @@ class NodeController extends Controller
      */
     public function store(StoreNodeRequest $request)
     {
-        //
+        return $this->nodeService->store($request->safe()->all());
     }
 
     /**
@@ -37,23 +36,7 @@ class NodeController extends Controller
      */
     public function show(Node $node)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Node $node)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateNodeRequest $request, Node $node)
-    {
-        //
+        return $this->nodeService->show($node);
     }
 
     /**
@@ -61,6 +44,6 @@ class NodeController extends Controller
      */
     public function destroy(Node $node)
     {
-        //
+        return $this->nodeService->destroy($node);
     }
 }

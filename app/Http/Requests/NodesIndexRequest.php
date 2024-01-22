@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreNodeRequest extends FormRequest
+class NodesIndexRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class StoreNodeRequest extends FormRequest
     {
         return [
             'parent' => 'sometimes|nullable|integer',
-            'locales' => 'sometimes|nullable|array'
+            'timezone' => 'sometimes|nullable|string'
         ];
     }
 }

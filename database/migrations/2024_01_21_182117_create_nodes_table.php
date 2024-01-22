@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('nodes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent')->nullable();
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }
