@@ -1,6 +1,6 @@
 # Backend | Prueba tecnica
 
-Repositorio para el backend del proyecto Tú Traduces. Desarrollado con Laravel 9.2
+Repositorio para Prueba tecnica Grupo Apok. Desarrollado con Laravel 10.10
 
 ### Pre-requisitos 📋
 
