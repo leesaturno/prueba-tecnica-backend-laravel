@@ -17,7 +17,6 @@ class NodeObserver
 
     public function created(Node $node)
     {
-        Log::alert(App::getLocale());
         if (!empty($this->request->get('locales'))) {
             foreach ($this->request->get('locales') as $locale) {
                 $node->title = [$locale => number_to_text($node->id, $locale)];

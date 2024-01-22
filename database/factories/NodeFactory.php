@@ -24,7 +24,7 @@ class NodeFactory extends Factory
         $created_at = fake()->dateTimeBetween('-1 year', 'now');
         return [
             'id' => $id,
-            'parent' => null,
+            'parent' => fake()->randomElement([Node::factory(), null]),
             'created_at' => $created_at,
         ];
     }

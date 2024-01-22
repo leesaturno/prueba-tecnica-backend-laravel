@@ -19,7 +19,7 @@ class NodesResource extends JsonResource
             'id' => $this->id,
             'parent' => $this->parent,
             'title' => $this->title,
-            'created_at' =>  Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->setTimezone($request->get('timezone'))->isoFormat('llll'),
+            'created_at' =>  Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->setTimezone($request->get('timezone'))->Format('Y-m-d\TH:i:s.u\Z'),
         ];
     }
 }

@@ -1,0 +1,330 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tree nodes Backend API",
+        "description": "API documentation for Tree nodes backend template",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "{schema}://{hostname}{domain}{port}/{versionapi}",
+            "description": "Laravel backend api",
+            "variables": {
+                "domain": {
+                    "enum": [
+                        "localhost",
+                        "127.0.0.1"
+                    ],
+                    "default": "127.0.0.1"
+                },
+                "port": {
+                    "enum": [
+                        ":8000"
+                    ],
+                    "default": ":8000"
+                },
+                "schema": {
+                    "enum": [
+                        "https",
+                        "http"
+                    ],
+                    "default": "http"
+                },
+                "versionapi": {
+                    "enum": [
+                        "",
+                        "api/v1",
+                        "api/v2"
+                    ],
+                    "default": "api/v1"
+                },
+                "hostname": {
+                    "default": ""
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/nodes": {
+            "get": {
+                "tags": [
+                    "Node"
+                ],
+                "summary": "Display a listing of Node.",
+                "operationId": "NodeIndex",
+                "parameters": [
+                    {
+                        "name": "parent",
+                        "in": "query",
+                        "description": "Node parent",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "timezone",
+                        "in": "query",
+                        "description": "timezone",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Entity created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/201"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error. Please contact with administrators page.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/500"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Node"
+                ],
+                "summary": "Store a newly created node in storage.",
+                "operationId": "NodeStore",
+                "requestBody": {
+                    "request": "Node Store",
+                    "description": "Node store request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Node"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Process completed successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/200"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error. Please contact with administrators page.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/500"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/node/{node}": {
+            "get": {
+                "tags": [
+                    "Node"
+                ],
+                "summary": "Return the information of specified node.",
+                "operationId": "NodeShow",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "locale",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Process completed successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/200"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error. Please contact with administrators page.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/500"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Node"
+                ],
+                "summary": "Remove the specified node from storage.",
+                "operationId": "NodeDestroy",
+                "responses": {
+                    "200": {
+                        "description": "Process completed successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/200"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error. Please contact with administrators page.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/500"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Node": {
+                "title": "Node model",
+                "description": "Node model",
+                "properties": {
+                    "parent": {
+                        "title": "Node parent",
+                        "description": "Node parent",
+                        "type": "string",
+                        "default": "parent"
+                    },
+                    "locales": {
+                        "title": "Node locales",
+                        "description": "Node locales",
+                        "type": "string",
+                        "default": "['es','en']"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Node"
+                }
+            },
+            "200": {
+                "title": "200",
+                "description": "Process completed successfully.",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "201": {
+                "title": "201",
+                "description": "Entity creation successfully.",
+                "properties": {
+                    "": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "401": {
+                "title": "401",
+                "description": "Unauthorized.",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "422": {
+                "title": "422",
+                "description": "Please, check errors form.",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "500": {
+                "title": "500",
+                "description": "Internal server error. Please contact with administrators page.",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Adjuntar token devuelto en el login para poder realizar peticiones",
+                "name": "Password Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
