@@ -36,6 +36,10 @@ class NodeService
 
     public function destroy(Node $node): JsonResponse
     {
+        $childs = Node::where('parent', $node->id)->count();
+        if ($childs > 0) {
+            return response()->koJson([], "can't delete a parent node", 422);
+        }
         $node->delete();
 
         return response()->okJson();
